@@ -10,6 +10,8 @@ class Movie extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = ['title', 'is_published', 'image'];
 
 //    protected $attributes = [
