@@ -14,9 +14,11 @@ class Movie extends Model
 
     protected $fillable = ['title', 'is_published', 'image'];
 
-//    protected $attributes = [
+    protected $attributes = [
 //        'image' => 'path to default image',
-//    ];
+    // 0 or false
+        'is_published' => 0,
+    ];
 
     public function genres(): BelongsToMany
     {
