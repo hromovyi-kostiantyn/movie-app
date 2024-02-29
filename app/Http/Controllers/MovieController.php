@@ -31,7 +31,7 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMovieRequest $request): GenreResource
+    public function store(StoreMovieRequest $request): MovieResource
     {
 
         $data = $request->validated();
@@ -40,7 +40,7 @@ class MovieController extends Controller
 
         $movie = $this->movieService->store($movieDTO);
 
-        return GenreResource::make($movie);
+        return MovieResource::make($movie);
     }
 
 

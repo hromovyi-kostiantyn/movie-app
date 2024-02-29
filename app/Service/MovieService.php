@@ -96,13 +96,13 @@ class MovieService {
     {
         if ($image) {
             $path = $image->store('images', 'public');
-            return asset('storage/' . $path); // Возвращает URL изображения
+            return asset( $path); // Возвращает URL изображения
         }
         return null;
     }
 
     private function defaultImage(): string {
-        return asset('storage/' . MovieDTO::defaultImage);
+        return asset('image/' . MovieDTO::defaultImage);
     }
 
 }
