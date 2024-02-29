@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\DTO\MovieDTO;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,10 +16,10 @@ class Movie extends Model
     protected $fillable = ['title', 'is_published', 'image'];
 
     protected $attributes = [
-//        'image' => 'path to default image',
-    // 0 or false
         'is_published' => 0,
     ];
+
+    protected $with = ['genres'];
 
     public function genres(): BelongsToMany
     {
