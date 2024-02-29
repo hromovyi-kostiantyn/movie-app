@@ -20,6 +20,6 @@ Route::apiResources([
     'genres' => GenreController::class,
 ]);
 
-Route::get('/movies/{movie}/publish', [MovieController::class, 'publish']);
+Route::patch('/movies/{movie}/publish', [MovieController::class, 'publish']);
 
 

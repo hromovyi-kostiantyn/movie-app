@@ -102,7 +102,7 @@ class MovieService {
     }
 
     private function defaultImage(): string {
-        return asset('image/' . MovieDTO::defaultImage);
+        return asset('images/' . MovieDTO::defaultImage);
     }
 
 }

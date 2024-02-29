@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\DTO\MovieDTO;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
-use App\Http\Resources\GenreResource;
 use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use App\Service\MovieService;
@@ -40,7 +39,7 @@ class MovieController extends Controller
 
         $movie = $this->movieService->store($movieDTO);
 
-        return MovieResource::make($movie);
+        return MovieResource::make($movie->load('genres'));
     }
 
 
@@ -55,7 +54,7 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMovieRequest $request, Movie $movie): JsonResponse
+    public function update(UpdateMovieRequest $request, Movie $movie): MovieResource|JsonResponse
     {
         if (!$request->hasAny(['title', 'image', 'genres', 'is_published'])) {
             return response()->json(['message' => 'No data to update'], 422);
@@ -67,7 +66,7 @@ class MovieController extends Controller
 
         $this->movieService->update($movieDTO,$movie);
 
-        return response()->json(['message' => 'Movie updated'], 200);
+        return MovieResource::make($movie);
     }
 
     public function publish(Movie $movie): JsonResponse {
