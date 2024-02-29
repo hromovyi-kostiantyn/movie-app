@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResources([
-    'movie' => MovieController::class,
-    'genre' => GenreController::class,
+    'movies' => MovieController::class,
+    'genres' => GenreController::class,
 ]);
+
+Route::get('/movies/{movie}/publish', [MovieController::class, 'publish']);
 
 
