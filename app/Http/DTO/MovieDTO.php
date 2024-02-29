@@ -7,16 +7,26 @@ use Illuminate\Http\UploadedFile;
 
 class MovieDTO {
     public function __construct(
-        public readonly string $title,
-        public readonly UploadedFile $image,
-        public readonly array $genres,
+        public readonly ?string $title,
+        public readonly ?UploadedFile $image,
+        public readonly ?array $genres,
+        public readonly ?int $is_published = 0,
     ) {}
 
-    public static function fromValidatedData(array $data): self {
+    public static function fromStoreValidatedData(array $data): self {
         return new self(
             title: $data['title'],
             image: $data['image'],
             genres: $data['genres'],
+        );
+    }
+
+    public static function fromUpdateValidatedData(array $data): self {
+        return new self(
+            title: $data['title'] ?? null,
+            image: $data['image'] ?? null,
+            genres: $data['genres'] ?? null,
+            is_published: $data['is_published'] ?? null,
         );
     }
 }
