@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 180)->unique();
+            $table->string('title', 180);
             $table->boolean('is_published')->default(false);
-            $table->string('image')->nullable();
+            $table->string('image');
         });
     }
 
