@@ -11,7 +11,7 @@ class GenreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,9 +21,8 @@ class GenreRequest extends FormRequest
      */
     public function rules(): array
     {
-        // mb add |unique:genres
         return [
-            'name' => 'required|string|max:30',
+            'name' => 'required|string|max:30|unique:genres',
         ];
     }
 }
