@@ -9,9 +9,9 @@ class GenreDTO {
         public readonly string $name
     ) {}
 
-    public static function fromRequest(GenreRequest $request): self {
+    public static function fromValidatedData(array $data): self {
         return new self(
-            name: $request->validated('name'),
+            name: $data['name'],
         );
     }
 }

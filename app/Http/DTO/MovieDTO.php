@@ -6,6 +6,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 
 class MovieDTO {
+    public const defaultImage = 'default-movie.jpg';
     public function __construct(
         public readonly ?string $title,
         public readonly ?UploadedFile $image,
@@ -16,7 +17,7 @@ class MovieDTO {
     public static function fromStoreValidatedData(array $data): self {
         return new self(
             title: $data['title'],
-            image: $data['image'],
+            image: $data['image'] ?? null,
             genres: $data['genres'],
         );
     }
